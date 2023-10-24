@@ -2,6 +2,15 @@ Name : Surata Saha Hiya
 Id : 22101363
 Section : 10
 
+/*
+Task 1: Wrong logic to compute the starting index for the odd columns. It should be row - 1 when the number of rows are even, 
+rows - 2 otherwise. Doesn't matter if the number of rows is less or greater than the number of columns. 
+Task 2: No issues. 
+Task 3: No issues. Computed the size of the strength array correctly. Eligible for bonus. 
+Task 4: No issues. 
+Task 5: No issues. 
+*/
+
 //task 01
 public class path{
     public static void floor(int[][]ar){
