@@ -1,6 +1,18 @@
-Name : Surata Saha Hiya
+/*Name : Surata Saha Hiya
 Id : 22101363
+*/
 
+/*Feedback
+Task 1: No issues. 
+Task 2: No issues. 
+Task 3: No issues. 
+Task 4: No issues. Please read instructions carefully. When you were told only to use Linked List it was implied to use your own
+implementaiton. You will be given the benefit of the ambiguity only for this time. 
+Task 5: The algorithm is correct but ArrayList was used which was prohibited. 
+Bonus Task: Misunderstood the task. Also there was no mathematical computation for the candidate node. The implementation traverse 
+until the node at the given idx, saves a reference to previous node and appends the entire candidate line after the previous node and
+at the end connect the end of the candidate line to that of the remaining conga line. 
+ */
 //task 1 
 
 public class rotation {
@@ -113,7 +125,6 @@ public class rotation {
 
 
     }
-
 }
 
 
