@@ -1,0 +1,307 @@
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {10, 10, 10, 3};
+        System.out.println("1(a) adds all the elements of of an array : " );
+        System.out.println(sum(arr, arr.length));
+        System.out.println("1(b) Answer of combination: ");
+        System.out.println(comb(5,2));
+        System.out.println("1(c) count digits in a number : ");
+        System.out.println(digits(943556));
+        System.out.println("1(d) prime detecting : ");
+        boolean con = prime(33, 0, 2);
+        if (con == false) {
+            System.out.println("Not prime");
+        } else {
+            System.out.println("Prime");
+        }
+        System.out.println("2(c) print vowels and consonant in a linked list : ");
+        Node head = null;
+        head = insertEnd(head, 'a');
+        head = insertEnd(head, 'b');
+        head = insertEnd(head, 'c');
+        head = insertEnd(head, 'D');
+        head = insertEnd(head, 'A');
+        head = insertEnd(head, 'e');
+        head = insertEnd(head, 'E');
+        head = insertEnd(head, 'Z');
+        head = insertEnd(head, 'g');
+        head = insertEnd(head, 'G');
+        head = insertEnd(head, 'U');
+        head = insertEnd(head, 'u');
+
+        traverse(head);
+        find(head);
+        System.out.println("3(a) hocBuilder : ");
+        System.out.println("Please give the height number : ");
+        Scanner sc = new Scanner(System.in);
+        int a = sc.nextInt();
+        System.out.println(hocBuilder(a));
+        System.out.println("3(b) Max element in an array: ");
+        int[] arr1 = {5, 10, 5, 87765, 1, 2};
+        System.out.println(max(arr1, 0));
+        System.out.println("4(a) Pattern : ");
+        pattren2(5);
+        System.out.println("4(b) pattern: ");
+        int rows = 5;
+       pattern(rows);
+        System.out.println("(5) flatten list: ");
+        List<Object> nestedList = new ArrayList<>(Arrays.asList(
+                1,
+                new ArrayList<>(Arrays.asList(
+                        2,
+                        new ArrayList<>(Arrays.asList(
+                                3,
+                                new ArrayList<>(Arrays.asList(4)),
+                                5
+                        )),
+                        6
+                )),
+                7,
+                8,
+                new ArrayList<>(Arrays.asList(
+                        9,
+                        new ArrayList<>(Arrays.asList(
+                                new ArrayList<>(Arrays.asList(10, 11)),
+                                12
+                        )),
+                        13
+                )),
+                14,
+                new ArrayList<>(Arrays.asList(
+                        15,
+                        new ArrayList<>(Arrays.asList(
+                                16,
+                                new ArrayList<>(Arrays.asList(17))
+                        ))
+                ))
+        ));
+
+
+        System.out.println("Nested List:\n" + nestedList);
+        System.out.println("Flattened List:\n" + flattenList(nestedList));
+
+
+
+
+    }
+
+    //task 1(a)
+    public static int sum(int[]arr,int size){
+        if(size == 0){
+            return 0;
+        }
+        return arr[size-1] + sum (arr,size-1);
+
+    }
+    //task 1(b)
+    public static int comb(int n,int r){
+        if(r == 0 || n == r){
+            return 1;
+        }
+        return comb(n-1,r-1) + comb(n-1,r);
+    }
+    // task 1(c)
+    static int digits(int n){
+        if(n / 10 == 0){
+            return 1;
+        }
+        return 1 + digits(n / 10);
+    }
+    //task1(d)
+    public static boolean prime(int n, int c, int i) {
+
+        if(i>n/2){
+            return c == 0;
+        }
+        if(n % i == 0){
+            return false;
+        }
+        if(n % i != 0){
+            return prime(n,c,i+1);
+        }
+        return c == 0;
+    }
+    // task 2(c)
+    static class Node {
+        char data;
+        Node next;
+    };
+
+    static Node newNode(char data){
+        Node new_node = new Node();
+        new_node.data = data;
+        new_node.next = null;
+        return new_node;
+    }
+    static void traverse(Node head){
+
+        if(head == null){
+          return;
+        }
+        System.out.print(head.data + " ");
+        traverse(head.next);
+        System.out.println();
+
+    }
+
+
+
+    static Node insertEnd(Node head, char data){
+
+        if (head == null)
+            return newNode(data);
+
+        else
+            head.next = insertEnd(head.next, data);
+        return head;
+    }
+
+    public static void find(Node head){
+        if(head == null){
+            return;
+        }
+        if(head.data == 'a' || head.data == 'A' || head.data == 'e' || head.data== 'E' ||head.data == 'i' || head.data == 'I' || head.data == 'o' || head.data == 'O'|| head.data == 'u' || head.data == 'U'){
+           // System.out.println();
+            System.out.print(head.data + " " );
+        }
+        find(head.next);
+
+        System.out.print( "\n");
+        //System.out.println();
+
+        if(!(head.data == 'a' || head.data == 'A' || head.data == 'e' || head.data== 'E' ||head.data == 'i' || head.data == 'I' || head.data == 'o' || head.data == 'O'|| head.data == 'u' || head.data == 'U')){
+            System.out.print(head.data + " ");
+        }
+
+
+    }
+    public static int hocBuilder(int n){
+        if(n == 0){
+            return 0;
+
+        }
+        if(n == 1){
+            return 8;
+        }
+        return 5+ hocBuilder(n-1);
+    }
+    static int max(int[] arr, int c) {
+        if (c == arr.length - 1) {
+            return arr[c];
+        }
+
+        int max1 = max(arr, c + 1);
+        if (max1 > arr[c]) {
+            return max1;
+
+        }
+        return arr[c];
+
+    }
+    static void pattren2(int n){
+        for(int row = 1; row<=n;row++){
+            for(int col = 1; col<=row;col++){
+                System.out.print(col + " ");
+            }
+            System.out.println();
+        }
+    }
+    static void pattern(int row){
+        printPattern(row,1,1);
+    }
+    static void printPattern(int row, int start, int diff) {
+        if (row <= 0) {
+            return;
+        }
+        printRow(start, row, diff, 0);
+        System.out.println();
+        printPattern(row - 1, start + 2, diff * 2);
+    }
+
+    static void printRow(int num, int row, int diff, int count) {
+        if (count == row) {
+            return;
+        }
+        System.out.print(num + " ");
+        printRow(num + diff, row, diff, count + 1);
+    }
+    public static List<Object> flattenList(List<Object> nestedList) {
+        if (nestedList.isEmpty()) {
+            return nestedList;
+        }
+
+        if (nestedList.get(0) instanceof List<?>) {
+            List<Object> subList = (List<Object>) nestedList.get(0);
+            return concatenateLists(flattenList(subList), flattenList(nestedList.subList(1, nestedList.size())));
+        } else {
+            List<Object> newList = new ArrayList<>();
+            newList.add(nestedList.get(0));
+            newList.addAll(flattenList(nestedList.subList(1, nestedList.size())));
+            return newList;
+        }
+    }
+
+    public static List<Object> concatenateLists(List<Object> list1, List<Object> list2) {
+        List<Object> concatenatedList = new ArrayList<>(list1);
+        concatenatedList.addAll(list2);
+        return concatenatedList;
+    }
+
+
+}
+
+#python
+#2(a)
+def encoding(dec_number): #0<=dec_number<=15
+  return '0123456789ABCDEF'[dec_number]
+
+def dec_to_hexa_recursive(num):
+  if num==0:
+    return ""
+  else:
+    return dec_to_hexa_recursive(num//16) + str(encoding(num%16))
+
+#1
+print('Use of encoding function')
+decimal_number = 7
+print(f'Hexadecimal Number: {encoding(decimal_number)}')
+decimal_number = 13
+print(f'Hexadecimal Number: {encoding(decimal_number)}')
+
+print('========1========')
+returned_value = dec_to_hexa_recursive(1230)
+print(f'Hexadecimal Number: {returned_value}') # This should print 4CE
+unittest.output_test(returned_value, '4CE')
+print('========2========')
+returned_value = dec_to_hexa_recursive(600)
+print(f'Hexadecimal Number: {returned_value}') # This should print 258
+unittest.output_test(returned_value, '258')
+
+#2(b)
+def compare_recursive(head, array):
+  if len(array)==0 and head is None:
+    return True
+  elif len(array)==0 or head is None or array[0]!= head.elem:
+    return False
+  else:
+    return compare_recursive(head.next, array[1:])
+
+#2
+print('========1========')
+array = np.array([10, 11, 12, 13, 14])
+head = create_linked_list(np.array([10, 11, 12, 13, 14]))
+returned_value = compare_recursive(head, array)
+print(f'Same: {returned_value}') # This should print True
+unittest.output_test(returned_value, True)
+print('========2========')
+array = np.array([10, 11, 12, 13, 14])
+head = create_linked_list(np.array([10, 11, 17, 13, 14]))
+returned_value = compare_recursive(head, array)
+print(f'Same: {returned_value}') # This should print False
+unittest.output_test(returned_value, False)
