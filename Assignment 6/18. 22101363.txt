@@ -4,6 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+Task 1(d): Doesn't handle the case where n<=1. 
+Task 4(a): Used loops. 
+Rest: No issues. 
+*/
+
 public class Main {
     public static void main(String[] args) {
         int[] arr = {10, 10, 10, 3};
